@@ -200,10 +200,46 @@ function exibirAlunos(alunos) {
   })
 }
 
+function aprovados(alunos) {
+  listaAlunos.innerHTML = "" 
+  const alunosAprovados = alunos.filter((aluno) => {
+    return aluno.notaFinal >= 7
+  })
+
+  alunosAprovados.forEach((aprovado)=> {
+    listaAlunos.innerHTML += criarCardAluno(aprovado)
+  })
+}
+
+function reprovados(alunos) {
+  listaAlunos.innerHTML = ""
+  const alunosReprovados = alunos.filter((aluno) => {
+    return aluno.notaFinal <= 6
+  })
+
+  alunosReprovados.forEach((reprovado)=> {
+    listaAlunos.innerHTML += criarCardAluno(reprovado)
+  })
+}
+
+
+btnReprovados.addEventListener("click", ()=> {
+  btnReprovados.classList.add("ativo")
+  btnAprovados.classList.remove("ativo")
+  btnTodos.classList.remove("ativo")
+})
+
+btnAprovados.addEventListener("click", ()=> {
+  btnAprovados.classList.add("ativo")
+  btnReprovados.classList.remove("ativo")
+  btnTodos.classList.remove("ativo")
+})
 
 
 btnTodos.addEventListener("click", ()=> {
-  exibirAlunos(alunos)
+  btnTodos.classList.add("ativo")
+  btnReprovados.classList.remove("ativo")
+  btnAprovados.classList.remove("ativo")
 })
 
 
